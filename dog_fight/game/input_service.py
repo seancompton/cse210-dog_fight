@@ -1,6 +1,6 @@
 import sys
 from game.point import Point
-import raylibpy
+import pyray
 
 class InputService:
     """Detects player input. The responsibility of the class of objects is to detect player keypresses and translate them into a point representing a direction (or velocity).
@@ -34,8 +34,8 @@ class InputService:
         if self.is_left_pressed():
             dx = -1
         
-        if self.is_right_pressed():
-            dx = 1
+        if self.is_d_pressed():
+            dx = 1        
         
         if self.is_up_pressed():
             dy = -1
@@ -43,20 +43,37 @@ class InputService:
         if self.is_down_pressed():
             dy = 1
 
+        if self.is_w_pressed():
+            dy = -2
+
+        if self.is_s_pressed():
+            dy = 2
+            
+
         direction = Point(dx, dy)
         return direction
 
     def is_left_pressed(self):
-        return raylibpy.is_key_down(raylibpy.KEY_LEFT)
+        return pyray.is_key_down(pyray.KEY_LEFT)
 
     def is_right_pressed(self):
-        return raylibpy.is_key_down(raylibpy.KEY_RIGHT)
+        return pyray.is_key_down(pyray.KEY_RIGHT)
 
     def is_up_pressed(self):
-        return raylibpy.is_key_down(raylibpy.KEY_UP)
+        return pyray.is_key_down(pyray.KEY_UP)
 
     def is_down_pressed(self):
-        return raylibpy.is_key_down(raylibpy.KEY_DOWN)
+        return pyray.is_key_down(pyray.KEY_DOWN)
 
+    def is_w_pressed(self):
+        return pyray.is_key_down(pyray.KEY_W)
+
+    def is_s_pressed(self):
+        return pyray.is_key_down(pyray.KEY_S)
+
+    def is_d_pressed(self):
+        return pyray.is_key_down(pyray.KEY_D)
+        
     def window_should_close(self):
-        return raylibpy.window_should_close()
+        return pyray.window_should_close()
+

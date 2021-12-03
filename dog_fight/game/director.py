@@ -1,6 +1,6 @@
 from time import sleep
 
-import raylibpy
+import pyray
 from game import constants
 
 class Director:
@@ -34,11 +34,10 @@ class Director:
             self._cue_action("output")
 
             # TODO: Add some logic like the following to handle game over conditions
-            # if len(self._cast["balls"]) == 0:
-            #     # Game over
-            #     self._keep_playing = False
+            #probably find out if the hit count on the airplanes is equall to 5
+           
 
-            if raylibpy.window_should_close():
+            if pyray.window_should_close():
                 self._keep_playing = False
 
 
