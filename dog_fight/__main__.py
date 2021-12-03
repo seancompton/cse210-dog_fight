@@ -20,7 +20,7 @@ from game.cover import Cover
 # from game.bullet import Bullet
 # from game.obstacle import Obstacle
 from game.control_actors import ConstrolActorsAction
-# from game.handle_collisions_action import HandleCollisionsAction
+from game.handle_collisions import HandleCollisions
 from game.handle_of_screen_action import HandleOffScreenAction
 from game.move_actors_action import MoveActorsAction
 
@@ -61,6 +61,14 @@ def main():
     cast["obstacles"] = []
     # TODO: Randomly generates 4 objects that have to be shot around in order to hit the other airplane
 
+    for i in range(constants.NUMBER_OF_OBSTACLES):
+        cover = Cover()
+        cover.set_height(constants.OBSTACLE_HEIGHT)
+        cover.set_width(constants.OBSTACLE_WIDTH)
+        position = Point(random.randint(70, 700), random.randint(70, 500))
+        cover.set_position(position)
+        cast["obstacles"].append(cover)
+
 
     # Create the script {key: tag, value: list}
     script = {}
@@ -72,13 +80,14 @@ def main():
     control_actors = ConstrolActorsAction(input_service)
     move_actors_action = MoveActorsAction()
     handle_of_screen_action = HandleOffScreenAction()
+    handle_collisions = HandleCollisions(physics_service)
 
     draw_actors_action = DrawActorsAction(output_service)
 
     # TODO: Create additional actions here and add them to the script
 
     script["input"] = [control_actors]
-    script["update"] = [move_actors_action, handle_of_screen_action]
+    script["update"] = [move_actors_action, handle_of_screen_action, handle_collisions]
     script["output"] = [draw_actors_action]
 
     # Start the game

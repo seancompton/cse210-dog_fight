@@ -10,9 +10,7 @@ class HandleOffScreenAction(Action):
         i = 0
         for bullet in cast["bullets"]:
             position = bullet.get_position()
-            x = position.get_x()
-            print(x)
-            
+            x = position.get_x()            
             
             if x == 0 or x == 800:
                 cast["bullets"].pop(i)

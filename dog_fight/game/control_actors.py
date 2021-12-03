@@ -37,6 +37,9 @@ class ConstrolActorsAction(Action):
             position = airplane.get_position()
             bullet.set_height(constants.BULLET_HEIGHT)
             bullet.set_width(constants.BULLET_WIDTH)
+            x = position.get_x()
+            y = position.get_y()
+            position = Point(x - 100, y)
             bullet.set_position(position)
             velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
             bullet.set_velocity(velocity)
@@ -46,6 +49,10 @@ class ConstrolActorsAction(Action):
             bullet = Bullet()
             airplane = cast["airplanes"][0]
             position = airplane.get_position()
+            x = position.get_x()
+            y = position.get_y()
+            x = x + 100
+            position = Point(x, y)
             bullet.set_height(constants.BULLET_HEIGHT)
             bullet.set_width(constants.BULLET_WIDTH)
             bullet.set_position(position)
