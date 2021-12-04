@@ -14,6 +14,7 @@ from game.audio_service import AudioService
 from game.airplane import Airplane
 from game.bullet import Bullet
 from game.cover import Cover
+from game.display_score import DisplayScore
 
 # TODO: Add imports similar to the following when you create these classes
 # from game.airplane import Airplane
@@ -41,6 +42,8 @@ def main():
     airplane.set_height(constants.AMERICAN_HEIGHT)
     velocity = Point(0, 0)
     airplane.set_velocity(velocity)
+    score_location = Point(constants.X_AMERICAN_SCORE, constants.Y_AMERICAN_SCORE)
+    airplane.set_score_position(score_location)
     cast["airplanes"].append(airplane)
 
     #creating the russian airplane
@@ -51,6 +54,8 @@ def main():
     airplane.set_height(constants.RUSSIAN_HEIGHT)
     velocity = Point(0, 0)
     airplane.set_velocity(velocity)
+    score_location = Point(constants.X_RUSSIAN_SCORE, constants.Y_RUSSIAN_SCORE)
+    airplane.set_score_position(score_location)
     cast["airplanes"].append(airplane)
 
     cast["bullets"] = []
@@ -69,7 +74,6 @@ def main():
         cover.set_position(position)
         cast["obstacles"].append(cover)
 
-
     # Create the script {key: tag, value: list}
     script = {}
 
@@ -81,6 +85,7 @@ def main():
     move_actors_action = MoveActorsAction()
     handle_of_screen_action = HandleOffScreenAction()
     handle_collisions = HandleCollisions(physics_service)
+    display_score = DisplayScore(output_service)
 
     draw_actors_action = DrawActorsAction(output_service)
 
@@ -88,7 +93,7 @@ def main():
 
     script["input"] = [control_actors]
     script["update"] = [move_actors_action, handle_of_screen_action, handle_collisions]
-    script["output"] = [draw_actors_action]
+    script["output"] = [draw_actors_action, display_score]
 
     # Start the game
     output_service.open_window("Dog Fight")
