@@ -15,28 +15,37 @@ class ConstrolActorsAction(Action):
         direction = self._input_service.get_direction()
         y = direction.get_y()
         x = direction.get_x()
-        print(y)
 
-        if y == -1 or y == 1:
+        if self._input_service.is_up_pressed():
+            y = -1
             direction = Point(0, y)
             airplane = cast["airplanes"][1]
             airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_RUSSIAN))
-        
 
-        elif y == -2 or y == 2:
+        if self._input_service.is_down_pressed():
+            y = 1
+            direction = Point(0, y)
+            airplane = cast["airplanes"][1]
+            airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_RUSSIAN))
+
+        if self._input_service.is_s_pressed():
             airplane = cast["airplanes"][0]
+            y = 1
+            direction = Point(0, y)
+            airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_AMERICAN))  
+
+        if self._input_service.is_w_pressed():
+            airplane = cast["airplanes"][0]
+            y = -1
             direction = Point(0, y)
             airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_AMERICAN))
 
-
-
-        else: 
+        elif y != -2 and y != 2 and y != -1 and y != 1: 
             for airplane in cast["airplanes"]:
                 velocity = Point(0, 0)
                 airplane.set_velocity(velocity)
 
-
-        if x == 1:
+        if self._input_service.is_d_pressed():
             bullet = Bullet()
             airplane = cast["airplanes"][0]
             position = airplane.get_position()
@@ -44,14 +53,30 @@ class ConstrolActorsAction(Action):
             y = position.get_y()
             x = x + 100
             position = Point(x, y)
-            bullet.set_height(constants.BULLET_HEIGHT)
-            bullet.set_width(constants.BULLET_WIDTH)
-            bullet.set_position(position)
-            velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
-            bullet.set_velocity(velocity)
-            cast["bullets"].append(bullet)
 
-        elif x == -1:
+            if len(cast["bullets"]) != 0:
+                last_bullet = cast["bullets"][-1]
+                last_bullet_position = last_bullet.get_position()
+                last_bullet_x = last_bullet_position.get_x()
+                velocity = last_bullet.get_velocity()
+                dx = velocity.get_x()
+                print(f"{dx}-------------------")
+
+                if last_bullet_x > x + constants.BULLET_SHOOTING_SPEED and dx: 
+                    bullet.set_height(constants.BULLET_HEIGHT)
+                    bullet.set_width(constants.BULLET_WIDTH)
+                    bullet.set_position(position)
+                    velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
+                    bullet.set_velocity(velocity)
+                    cast["bullets"].append(bullet)
+                                
+            else:
+                bullet.set_position(position)
+                velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
+                bullet.set_velocity(velocity)
+                cast["bullets"].append(bullet)
+
+        if self._input_service.is_left_pressed():
             bullet = Bullet()
             airplane = cast["airplanes"][1]
             position = airplane.get_position()
@@ -60,7 +85,24 @@ class ConstrolActorsAction(Action):
             x = position.get_x()
             y = position.get_y()
             position = Point(x - 100, y)
-            bullet.set_position(position)
-            velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
-            bullet.set_velocity(velocity)
-            cast["bullets"].append(bullet)
+
+            if len(cast["bullets"]) != 0:
+               
+                last_bullet = cast["bullets"][-1]
+                last_bullet_position = last_bullet.get_position()
+                last_bullet_x = last_bullet_position.get_x()
+                velocity = last_bullet.get_velocity()
+                dx = velocity.get_x()
+                print(f"{dx}-------------------******************")
+                
+                if last_bullet_x <  x - constants.BULLET_SHOOTING_SPEED: 
+                    bullet.set_position(position)
+                    velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
+                    bullet.set_velocity(velocity)
+                    cast["bullets"].append(bullet)
+
+            else:
+                bullet.set_position(position)
+                velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
+                bullet.set_velocity(velocity)
+                cast["bullets"].append(bullet)

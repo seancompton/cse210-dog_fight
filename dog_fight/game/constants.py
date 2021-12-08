@@ -11,59 +11,38 @@ DEFAULT_SQUARE_SIZE = 20
 DEFAULT_FONT_SIZE = 20
 DEFAULT_TEXT_OFFSET = 4
 
-IMAGE_BRICK = os.path.join(os.getcwd(), "./batter/assets/brick-3.png")
-IMAGE_PADDLE = os.path.join(os.getcwd(), "./batter/assets/bat.png")
-IMAGE_BALL = os.path.join(os.getcwd(), "./batter/assets/ball.png")
+IMAGE_F16 = os.path.join(os.getcwd(), "./cse210-dog_fight/dog_fight/assets/f_16.png")
+IMAGE_MIG = os.path.join(os.getcwd(), "./cse210-dog_fight/dog_fight/assets/mig.png")
+IMAGE_ASTROID = os.path.join(os.getcwd(), "./cse210-dog_fight/dog_fight/assets/asteroid.png")
 
-SOUND_START = os.path.join(os.getcwd(), "./batter/assets/start.wav")
-SOUND_BOUNCE = os.path.join(os.getcwd(), "./batter/assets/boing.wav")
-SOUND_OVER = os.path.join(os.getcwd(), "./batter/assets/over.wav")
-
-BALL_X = MAX_X / 2
-BALL_Y = MAX_Y - 125
-
-BALL_DX = 8
-BALL_DY = BALL_DX * -1
-
-PADDLE_X = MAX_X / 2
-PADDLE_Y = MAX_Y - 25
-
-BRICK_WIDTH = 48
-BRICK_HEIGHT = 24
-
-BRICK_SPACE = 5
+SOUND_START = os.path.join(os.getcwd(), "./dog_fight/assets/start.wav")
+SOUND_BOUNCE = os.path.join(os.getcwd(), "./dog_fight/assets/boing.wav")
+SOUND_OVER = os.path.join(os.getcwd(), "./dog_fight/assets/over.wav")
 
 AIRPLANE_SPEED_AMERICAN = 5
 AIRPLANE_SPEED_RUSSIAN = 10
 
-RUSSIAN_WIDTH = 20
-RUSSIAN_HEIGHT = 20
-X_RUSSIAN_LOCATION = 750
+RUSSIAN_WIDTH = 30
+RUSSIAN_HEIGHT = 30
+X_RUSSIAN_LOCATION = 770
 Y_RUSSIAN_LOCATION = 300
 RUSSIAN_BULLET_VELOCITY = -10
-X_RUSSIAN_SCORE = 780
+X_RUSSIAN_SCORE = 750
 Y_RUSSIAN_SCORE = 20
 
-AMERICAN_WIDTH = 20
-AMERICAN_HEIGHT = 20
+AMERICAN_WIDTH = 30
+AMERICAN_HEIGHT = 30
 X_AMERICAN_LOCATION = 0
 Y_AMERICAN_LOCATION = 300
 AMERICAN_BULLET_VELOCITY = 10
 X_AMERICAN_SCORE = 20
 Y_AMERICAN_SCORE = 20
 
-KEY_UP = 265
-KEY_DOWN = 264
-KEY_LEFT = 263
-KEY_W = 87
-KEY_S = 83
-KEY_D = 68
-
 BULLET_WIDTH = 50
 BULLET_HEIGHT = 10
+BULLET_SHOOTING_SPEED = 200
+BULLET_OFFSET = 35
 
-OBSTACLE_WIDTH = 50
-OBSTACLE_HEIGHT = 50
+OBSTACLE_WIDTH = 35
+OBSTACLE_HEIGHT = 35
 NUMBER_OF_OBSTACLES = 5
-
-SHOOTING_SPEED = 100

@@ -33,13 +33,14 @@ def main():
     cast["airplanes"] = []
     # TODO: Creates two airplanes and saves them in a list also stores how many hits each airplane
     #gets hit with
-    
+
     #Initially starting with american airplane
     airplane = Airplane()
     position = Point(constants.X_AMERICAN_LOCATION, constants.Y_AMERICAN_LOCATION)
     airplane.set_position(position)
     airplane.set_width(constants.AMERICAN_WIDTH)
     airplane.set_height(constants.AMERICAN_HEIGHT)
+    airplane.set_image(constants.IMAGE_F16)
     velocity = Point(0, 0)
     airplane.set_velocity(velocity)
     score_location = Point(constants.X_AMERICAN_SCORE, constants.Y_AMERICAN_SCORE)
@@ -52,6 +53,7 @@ def main():
     airplane.set_position(position)
     airplane.set_width(constants.RUSSIAN_WIDTH)
     airplane.set_height(constants.RUSSIAN_HEIGHT)
+    airplane.set_image(constants.IMAGE_MIG)
     velocity = Point(0, 0)
     airplane.set_velocity(velocity)
     score_location = Point(constants.X_RUSSIAN_SCORE, constants.Y_RUSSIAN_SCORE)
@@ -70,6 +72,7 @@ def main():
         cover = Cover()
         cover.set_height(constants.OBSTACLE_HEIGHT)
         cover.set_width(constants.OBSTACLE_WIDTH)
+        cover.set_image(constants.IMAGE_ASTROID)
         position = Point(random.randint(70, 700), random.randint(70, 500))
         cover.set_position(position)
         cast["obstacles"].append(cover)
