@@ -2,7 +2,6 @@ import os
 
 from game.bullet import Bullet
 
-
 MAX_X = 800
 MAX_Y = 600
 FRAME_RATE = 60
@@ -20,7 +19,7 @@ SOUND_BOUNCE = os.path.join(os.getcwd(), "./dog_fight/assets/boing.wav")
 SOUND_OVER = os.path.join(os.getcwd(), "./dog_fight/assets/over.wav")
 
 AIRPLANE_SPEED_AMERICAN = 5
-AIRPLANE_SPEED_RUSSIAN = 10
+AIRPLANE_SPEED_RUSSIAN = 5
 
 RUSSIAN_WIDTH = 30
 RUSSIAN_HEIGHT = 30

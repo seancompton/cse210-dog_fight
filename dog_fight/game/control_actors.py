@@ -45,6 +45,7 @@ class ConstrolActorsAction(Action):
                 velocity = Point(0, 0)
                 airplane.set_velocity(velocity)
 
+        #the code controling the American bullets
         if self._input_service.is_d_pressed():
             bullet = Bullet()
             airplane = cast["airplanes"][0]
@@ -59,23 +60,25 @@ class ConstrolActorsAction(Action):
                 last_bullet_position = last_bullet.get_position()
                 last_bullet_x = last_bullet_position.get_x()
                 velocity = last_bullet.get_velocity()
-                dx = velocity.get_x()
-                print(f"{dx}-------------------")
 
-                if last_bullet_x > x + constants.BULLET_SHOOTING_SPEED and dx: 
+                if last_bullet_x > x + constants.BULLET_SHOOTING_SPEED / 2: 
                     bullet.set_height(constants.BULLET_HEIGHT)
                     bullet.set_width(constants.BULLET_WIDTH)
                     bullet.set_position(position)
                     velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
                     bullet.set_velocity(velocity)
+                    bullet.set_whos_bullet("american")
                     cast["bullets"].append(bullet)
                                 
             else:
                 bullet.set_position(position)
                 velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
                 bullet.set_velocity(velocity)
-                cast["bullets"].append(bullet)
+                bullet.set_whos_bullet("american")
 
+                cast["bullets"].append(bullet)
+        
+        #controls the russian bullets
         if self._input_service.is_left_pressed():
             bullet = Bullet()
             airplane = cast["airplanes"][1]
@@ -90,19 +93,17 @@ class ConstrolActorsAction(Action):
                
                 last_bullet = cast["bullets"][-1]
                 last_bullet_position = last_bullet.get_position()
-                last_bullet_x = last_bullet_position.get_x()
-                velocity = last_bullet.get_velocity()
-                dx = velocity.get_x()
-                print(f"{dx}-------------------******************")
-                
+                last_bullet_x = last_bullet_position.get_x()                
                 if last_bullet_x <  x - constants.BULLET_SHOOTING_SPEED: 
                     bullet.set_position(position)
                     velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
                     bullet.set_velocity(velocity)
+                    bullet.set_whos_bullet("russian")
                     cast["bullets"].append(bullet)
 
             else:
                 bullet.set_position(position)
                 velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
                 bullet.set_velocity(velocity)
+                bullet.set_whos_bullet("russian")
                 cast["bullets"].append(bullet)
