@@ -64,7 +64,6 @@ def main():
     # TODO: creates a place in memory to save the bullet as they get shot from the
     #airplanes
 
-
     cast["obstacles"] = []
     # TODO: Randomly generates 4 objects that have to be shot around in order to hit the other airplane
 
