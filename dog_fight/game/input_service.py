@@ -62,14 +62,26 @@ class InputService:
     def is_up_pressed(self):
         return pyray.is_key_down(pyray.KEY_UP)
 
+    def is_up_not_pressed(self):
+        return pyray.is_key_up(pyray.KEY_UP)
+
     def is_down_pressed(self):
         return pyray.is_key_down(pyray.KEY_DOWN)
+    
+    def is_down_not_pressed(self):
+        return pyray.is_key_up(pyray.KEY_DOWN)
 
     def is_w_pressed(self):
         return pyray.is_key_down(pyray.KEY_W)
+    
+    def is_w_not_pressed(self):
+        return pyray.is_key_up(pyray.KEY_W)
 
     def is_s_pressed(self):
         return pyray.is_key_down(pyray.KEY_S)
+
+    def is_s_not_pressed(self):
+        return pyray.is_key_up(pyray.KEY_S)
 
     def is_d_pressed(self):
         return pyray.is_key_down(pyray.KEY_D)

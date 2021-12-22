@@ -1,3 +1,4 @@
+import pyray
 from game import point
 from game.action import Action
 from game import constants
@@ -22,11 +23,16 @@ class ConstrolActorsAction(Action):
             airplane = cast["airplanes"][1]
             airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_RUSSIAN))
 
-        if self._input_service.is_down_pressed():
+        elif self._input_service.is_down_pressed():
             y = 1
             direction = Point(0, y)
             airplane = cast["airplanes"][1]
             airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_RUSSIAN))
+        
+        elif self._input_service.is_down_not_pressed() and self._input_service.is_up_not_pressed():
+            airplane = cast["airplanes"][1]
+            velocity = Point(0, 0)
+            airplane.set_velocity(velocity)
 
         if self._input_service.is_s_pressed():
             airplane = cast["airplanes"][0]
@@ -34,17 +40,17 @@ class ConstrolActorsAction(Action):
             direction = Point(0, y)
             airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_AMERICAN))  
 
-        if self._input_service.is_w_pressed():
+        elif self._input_service.is_w_pressed():
             airplane = cast["airplanes"][0]
             y = -1
             direction = Point(0, y)
             airplane.set_velocity(direction.scale(constants.AIRPLANE_SPEED_AMERICAN))
 
-        elif y != -2 and y != 2 and y != -1 and y != 1: 
-            for airplane in cast["airplanes"]:
-                velocity = Point(0, 0)
-                airplane.set_velocity(velocity)
-
+        elif self._input_service.is_w_not_pressed() and self._input_service.is_s_not_pressed():
+            airplane = cast["airplanes"][0]
+            velocity = Point(0, 0)
+            airplane.set_velocity(velocity)
+        
         #the code controling the American bullets
         if self._input_service.is_d_pressed():
             bullet = Bullet()

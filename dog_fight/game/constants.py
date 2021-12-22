@@ -10,9 +10,9 @@ DEFAULT_SQUARE_SIZE = 20
 DEFAULT_FONT_SIZE = 20
 DEFAULT_TEXT_OFFSET = 4
 
-IMAGE_F16 = os.path.join(os.getcwd(), "./cse210-dog_fight/dog_fight/assets/f_16.png")
-IMAGE_MIG = os.path.join(os.getcwd(), "./cse210-dog_fight/dog_fight/assets/mig.png")
-IMAGE_ASTROID = os.path.join(os.getcwd(), "./cse210-dog_fight/dog_fight/assets/asteroid.png")
+IMAGE_F16 = os.path.join(os.getcwd(), "./dog_fight/assets/f_16.png")
+IMAGE_MIG = os.path.join(os.getcwd(), "./dog_fight/assets/mig.png")
+IMAGE_ASTROID = os.path.join(os.getcwd(), "./dog_fight/assets/asteroid.png")
 
 SOUND_START = os.path.join(os.getcwd(), "./dog_fight/assets/start.wav")
 SOUND_BOUNCE = os.path.join(os.getcwd(), "./dog_fight/assets/boing.wav")
@@ -44,4 +44,4 @@ BULLET_OFFSET = 35
 
 OBSTACLE_WIDTH = 35
 OBSTACLE_HEIGHT = 35
-NUMBER_OF_OBSTACLES = 5
+NUMBER_OF_OBSTACLES = 10

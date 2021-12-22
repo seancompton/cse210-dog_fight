@@ -15,6 +15,3 @@ class DisplayScore(Action):
             y = position.get_y()
             score = str(airplane.get_hit_points())
             self._output_services.draw_text(x, y, score, False)
-
-
-
