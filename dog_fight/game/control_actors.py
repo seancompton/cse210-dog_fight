@@ -52,7 +52,8 @@ class ConstrolActorsAction(Action):
             airplane.set_velocity(velocity)
         
         #the code controling the American bullets
-        if self._input_service.is_d_pressed():
+        if self._input_service.is_d_pressed() and self._input_service.return_d_key_status():
+            self._input_service.set_d_key_status(False)
             bullet = Bullet()
             airplane = cast["airplanes"][0]
             position = airplane.get_position()
@@ -60,32 +61,17 @@ class ConstrolActorsAction(Action):
             y = position.get_y()
             x = x + 100
             position = Point(x, y)
-
-            if len(cast["bullets"]) != 0:
-                last_bullet = cast["bullets"][-1]
-                last_bullet_position = last_bullet.get_position()
-                last_bullet_x = last_bullet_position.get_x()
-                velocity = last_bullet.get_velocity()
-
-                if last_bullet_x > x + constants.BULLET_SHOOTING_SPEED / 2: 
-                    bullet.set_height(constants.BULLET_HEIGHT)
-                    bullet.set_width(constants.BULLET_WIDTH)
-                    bullet.set_position(position)
-                    velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
-                    bullet.set_velocity(velocity)
-                    bullet.set_whos_bullet("american")
-                    cast["bullets"].append(bullet)
-                                
-            else:
-                bullet.set_position(position)
-                velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
-                bullet.set_velocity(velocity)
-                bullet.set_whos_bullet("american")
-
-                cast["bullets"].append(bullet)
+            bullet.set_height(constants.BULLET_HEIGHT)
+            bullet.set_width(constants.BULLET_WIDTH)
+            bullet.set_position(position)
+            velocity = Point(constants.AMERICAN_BULLET_VELOCITY, 0)
+            bullet.set_velocity(velocity)
+            bullet.set_whos_bullet("american")
+            cast["bullets"].append(bullet)
         
         #controls the russian bullets
-        if self._input_service.is_left_pressed():
+        if self._input_service.is_left_pressed() and self._input_service.return_left_key_status():
+            self._input_service.set_left_key_status(False)
             bullet = Bullet()
             airplane = cast["airplanes"][1]
             position = airplane.get_position()
@@ -93,23 +79,15 @@ class ConstrolActorsAction(Action):
             bullet.set_width(constants.BULLET_WIDTH)
             x = position.get_x()
             y = position.get_y()
-            position = Point(x - 100, y)
+            position = Point(x - 100, y)     
+            bullet.set_position(position)
+            velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
+            bullet.set_velocity(velocity)
+            bullet.set_whos_bullet("russian")
+            cast["bullets"].append(bullet)
 
-            if len(cast["bullets"]) != 0:
-               
-                last_bullet = cast["bullets"][-1]
-                last_bullet_position = last_bullet.get_position()
-                last_bullet_x = last_bullet_position.get_x()                
-                if last_bullet_x <  x - constants.BULLET_SHOOTING_SPEED: 
-                    bullet.set_position(position)
-                    velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
-                    bullet.set_velocity(velocity)
-                    bullet.set_whos_bullet("russian")
-                    cast["bullets"].append(bullet)
+        if self._input_service.is_left_not_pressed():
+            self._input_service.set_left_key_status(True)
 
-            else:
-                bullet.set_position(position)
-                velocity = Point(constants.RUSSIAN_BULLET_VELOCITY, 0)
-                bullet.set_velocity(velocity)
-                bullet.set_whos_bullet("russian")
-                cast["bullets"].append(bullet)
+        if self._input_service.is_d_not_pressed():
+            self._input_service.set_d_key_status(True)

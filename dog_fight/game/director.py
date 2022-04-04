@@ -1,4 +1,5 @@
 from time import sleep
+from typing import cast
 
 import pyray
 from game import constants
@@ -35,10 +36,15 @@ class Director:
 
             # TODO: Add some logic like the following to handle game over conditions
             #probably find out if the hit count on the airplanes is equall to 5
-           
+            airplanes = self._cast["airplanes"]
+            for airplane in airplanes:
+                if airplane.get_hit_points() == constants.POINTS_TO_WIN:
+                    self._keep_playing = False
+                    pass           
 
             if pyray.window_should_close():
                 self._keep_playing = False
+        
 
 
     def _cue_action(self, tag):
