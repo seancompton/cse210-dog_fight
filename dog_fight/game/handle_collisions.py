@@ -12,16 +12,19 @@ class HandleCollisions(Action):
         bullets = cast["bullets"]
         airplanes = cast["airplanes"]
         covers = cast["obstacles"]
+        scores = cast["scores"]
         x = 0
         remove_bullets = []
 
         for bullet in bullets:
             x = x + 1
-            
-            for airplane in airplanes:
-                if self._physics_service.is_collision(airplane, bullet):
+            length = len(airplanes)
+            for i in range(length):
+                if self._physics_service.is_collision(airplanes[i], bullet):
                     remove_bullets.append(x)
-                    airplane.set_hit_points(1)                 
+                    scores[i].set_hit_points(1)
+                    scores[i].set_text(str(scores[i].get_hit_points()))
+
 
             for cover in covers:
                 if self._physics_service.is_collision(bullet, cover):

@@ -37,8 +37,9 @@ class Director:
             # TODO: Add some logic like the following to handle game over conditions
             #probably find out if the hit count on the airplanes is equall to 5
             airplanes = self._cast["airplanes"]
-            for airplane in airplanes:
-                if airplane.get_hit_points() == constants.POINTS_TO_WIN:
+            scores = self._cast["scores"]
+            for score in scores:
+                if score.get_hit_points() == constants.POINTS_TO_WIN:
                     self._keep_playing = False
                     pass           
 

@@ -14,7 +14,7 @@ from game.audio_service import AudioService
 from game.airplane import Airplane
 from game.bullet import Bullet
 from game.cover import Cover
-from game.display_score import DisplayScore
+from game.score import Score
 
 # TODO: Add imports similar to the following when you create these classes
 # from game.airplane import Airplane
@@ -43,8 +43,6 @@ def main():
     airplane.set_image(constants.IMAGE_F16)
     velocity = Point(0, 0)
     airplane.set_velocity(velocity)
-    score_location = Point(constants.X_AMERICAN_SCORE, constants.Y_AMERICAN_SCORE)
-    airplane.set_score_position(score_location)
     cast["airplanes"].append(airplane)
 
     #creating the russian airplane
@@ -56,9 +54,28 @@ def main():
     airplane.set_image(constants.IMAGE_MIG)
     velocity = Point(0, 0)
     airplane.set_velocity(velocity)
-    score_location = Point(constants.X_RUSSIAN_SCORE, constants.Y_RUSSIAN_SCORE)
-    airplane.set_score_position(score_location)
     cast["airplanes"].append(airplane)
+
+    #creates a place in memory for the scores
+    cast["scores"] = []
+
+    #creating the data for the american score
+    score = Score()
+    point = Point(constants.X_AMERICAN_SCORE, constants.Y_AMERICAN_SCORE)
+    score.set_position(point)
+    score.set_height(50)
+    score.set_width(50)
+    cast["scores"].append(score)
+
+    #creating the data for the russian score
+    score = Score()
+    point = Point(constants.X_RUSSIAN_LOCATION, constants.Y_RUSSIAN_LOCATION)
+    score.set_position(point)
+    score.set_height(50)
+    score.set_width(50)
+    cast["scores"].append(score)
+   
+
 
     cast["bullets"] = []
     # TODO: creates a place in memory to save the bullet as they get shot from the
@@ -87,7 +104,6 @@ def main():
     move_actors_action = MoveActorsAction()
     handle_of_screen_action = HandleOffScreenAction()
     handle_collisions = HandleCollisions(physics_service)
-    display_score = DisplayScore(output_service)
 
     draw_actors_action = DrawActorsAction(output_service)
 
@@ -95,7 +111,7 @@ def main():
 
     script["input"] = [control_actors]
     script["update"] = [move_actors_action, handle_of_screen_action, handle_collisions]
-    script["output"] = [draw_actors_action, display_score]
+    script["output"] = [draw_actors_action]
 
     # Start the game
     output_service.open_window("Dog Fight")
